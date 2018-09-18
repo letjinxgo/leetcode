@@ -200,7 +200,7 @@ or
 7 -> 6 -> 3 -> 2 -> 1
 ```
 
-**[Code](./397.IntegerReplacement.go)**
+**[Code:](./397.IntegerReplacement.go)**
 
 ```go
 /**
@@ -263,6 +263,58 @@ func missingNumber(nums []int) int {
 		}
 	}
 	return 0
+}
+```
+
+
+
+#### 347. Top K Frequent Elements
+
+Given a non-empty array of integers, return the **k** most frequent elements.
+
+**Example 1:**
+
+```
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+```
+
+**Example 2:**
+
+```
+Input: nums = [1], k = 1
+Output: [1]
+```
+
+**Note:**
+
+- You may assume *k* is always valid, 1 ≤ *k* ≤ number of unique elements.
+- Your algorithm's time complexity **must be** better than O(*n* log *n*), where *n* is the array's size.
+
+**[Code:](./347.TopKFrequentElements.go)**
+
+```go
+/**
+ * 347.TopKFrequentElements.go
+ */
+func topKFrequent(nums []int, k int) []int {
+	var numcounts = make(map[int]int)
+	var counts []int
+	var result []int
+	for _, v := range nums {
+		numcounts[v]++
+	}
+	for _, v := range numcounts {
+		counts = append(counts, v)
+	}
+	sort.Ints(counts)
+	c := counts[len(counts)-k]
+	for k, v := range numcounts {
+		if v >= c {
+			result = append(result, k)
+		}
+	}
+	return result
 }
 ```
 

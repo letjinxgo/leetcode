@@ -244,6 +244,52 @@ func generate(numRows int) [][]int {
 
 ---
 
+#### 136. Single Number
+
+Given a **non-empty** array of integers, every element appears *twice* except for one. Find that single one.
+
+**Note:**
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+**Example 1:**
+
+```
+Input: [2,2,1]
+Output: 1
+```
+
+**Example 2:**
+
+```
+Input: [4,1,2,1,2]
+Output: 4
+```
+
+**[Code:](136.SingleNumber.go)**
+
+```go
+/**
+ * 136.SingleNumber.go
+ */
+ func singleNumber(nums []int) int {
+	for _, v := range nums {
+		counts := 0
+		for _, m := range nums {
+			if v != m {
+				counts++
+			}
+		}
+		if counts == len(nums)-1 {
+			return v
+		}
+	}
+	return 0
+}
+```
+
+---
+
 #### 226. Invert Binary Tree
 
 Invert a binary tree.

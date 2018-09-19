@@ -854,3 +854,63 @@ Explanation: 28 = 1 + 2 + 4 + 7 + 14
 
 ---
 
+#### 551. Student Attendance Record I
+
+You are given a string representing an attendance record for a student. The record only contains the following three characters:
+
+
+
+1. **'A'** : Absent.
+2. **'L'** : Late.
+3. **'P'** : Present.
+
+
+
+A student could be rewarded if his attendance record doesn't contain **more than one 'A' (absent)** or **more than two continuous 'L' (late)**.
+
+You need to return whether the student could be rewarded according to his attendance record.
+
+**Example 1:**
+
+```
+Input: "PPALLP"
+Output: True
+```
+
+
+
+**Example 2:**
+
+```
+Input: "PPALLL"
+Output: False
+```
+
+
+
+**[Code:](51.StudentAttendanceRecordI.go)**
+
+```go
+/**
+ * 51.StudentAttendanceRecordI.go
+ */
+ func checkRecord(s string) bool {
+	A := 0
+	L := 0
+	for i := 0; i < len(s); i++ {
+		if s[i] == 'A' {
+			A++
+		}
+		if i >= 1 && i <= len(s)-2 {
+			if s[i] == s[i-1] && s[i] == s[i+1] && s[i] == 'L' {
+				L = 3
+			}
+		}
+	}
+	if A <= 1 && L <= 2 {
+		return true
+	}
+	return false
+}
+```
+

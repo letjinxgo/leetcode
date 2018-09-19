@@ -479,6 +479,45 @@ func missingNumber(nums []int) int {
 
 ---
 
+#### 283. Move Zeroes
+
+Given an array `nums`, write a function to move all `0`'s to the end of it while maintaining the relative order of the non-zero elements.
+
+**Example:**
+
+```
+Input: [0,1,0,3,12]
+Output: [1,3,12,0,0]
+```
+
+**Note**:
+
+1. You must do this **in-place** without making a copy of the array.
+2. Minimize the total number of operations.
+
+**[Code:](283.MoveZeroes.go)**
+
+```go
+/**
+ * 283.MoveZeroes.go
+ */
+func moveZeroes(nums []int) []int {
+	index := 0
+	for _, v := range nums {
+		if v != 0 {
+			nums[index] = v
+			index++
+		}
+	}
+	for i := len(nums) - 1; i >= index; i-- {
+		nums[i] = 0
+	}
+	return nums
+}
+```
+
+---
+
 #### 326. Power of Three
 
 Given an integer, write a function to determine if it is a power of three.

@@ -24,11 +24,11 @@ return [0, 1].
 /**
  * 1. TwoSum.go
  */
- func twoSum(nums []int, target int) []int {
-	for i, x := range nums {
-		for j, y := range nums {
-			if x+y == target && j > i {
-				nums = append([]int{}, i, j)
+func twoSum(nums []int, target int) []int {
+    for i, x := range nums {
+        for j, y := range nums {
+            if x+y == target && j > i {
+                nums = append([]int{}, i, j)
 			}
 		}
 	}
@@ -272,8 +272,8 @@ Output: 4
 /**
  * 136.SingleNumber.go
  */
- func singleNumber(nums []int) int {
-	for _, v := range nums {
+func singleNumber(nums []int) int {
+    for _, v := range nums {
 		counts := 0
 		for _, m := range nums {
 			if v != m {
@@ -318,7 +318,7 @@ Output: 99
 /**
  * 137.SingleNumberII.go
  */
- func singleNumber(nums []int) int {
+func singleNumber(nums []int) int {
 	for _, v := range nums {
 		counts := 0
 		for _, m := range nums {
@@ -520,7 +520,7 @@ Could you do it without using any loop / recursion?
 /**
  * 326.PowerofThree.go
  */
- func isPowerOfThree(n int) bool {
+func isPowerOfThree(n int) bool {
 	if n > 0 && 1162261467%n == 0 {
 		return true
 	}
@@ -551,6 +551,9 @@ Output: "amanaP :lanac a ,nalp a ,nam A"
 **[Code:](344.ReverseString.go)**
 
 ```go
+/**
+ * 344.ReverseString.go
+ */
 func reverseString(s string) string {
 	runes := []byte(s)
 	for from, to := 0, len(s)-1; from < to; from, to = from+1, to-1 {
@@ -786,7 +789,7 @@ Because the 4th row is incomplete, we return 3.
 /**
  * 441.ArrangingCoins.go
  */
- func arrangeCoins(n int) int {
+func arrangeCoins(n int) int {
 	total := float64(n) * 2
 	num := int(math.Sqrt(total))
 	if num*(num+1) <= int(total) {
@@ -828,8 +831,8 @@ Explanation: 28 = 1 + 2 + 4 + 7 + 14
 /**
  * 507.PerfectNumber.go
  */
- func checkPerfectNumber(num int) bool {
-	var nums []int
+func checkPerfectNumber(num int) bool {
+    var nums []int
 	if num == 1 {
 		return false
 	}
@@ -894,7 +897,7 @@ Output: False
 /**
  * 51.StudentAttendanceRecordI.go
  */
- func checkRecord(s string) bool {
+func checkRecord(s string) bool {
 	A := 0
 	L := 0
 	for i := 0; i < len(s); i++ {
@@ -950,7 +953,7 @@ Explanation: The robot moves left twice. It ends up two "moves" to the left of t
 /**
  * 657.RobotReturntoOrigin.go
  */
- func judgeCircle(moves string) bool {
+func judgeCircle(moves string) bool {
 	x, y := 0, 0
 	for _, m := range moves {
 		if m == 'U' {
@@ -1005,7 +1008,7 @@ Output: "lovely"
 /**
  * 709.ToLowerCase.go
  */
- func toLowerCase(str string) string {
+func toLowerCase(str string) string {
 	b := make([]byte, len(str))
 	for i := 0; i < len(str); i++ {
 		c := str[i]
@@ -1065,4 +1068,43 @@ func numJewelsInStones(J string, S string) int {
 ```
 
 ---
+
+#### 905. Sort Array By Parity
+
+Given an array `A` of non-negative integers, return an array consisting of all the even elements of `A`, followed by all the odd elements of `A`.
+
+You may return any answer array that satisfies this condition.
+
+ 
+
+**Example 1:**
+
+```
+Input: [3,1,2,4]
+Output: [2,4,3,1]
+The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+```
+
+**[Code:](905.SortArrayByParity.go)**
+
+```go
+/**
+ * 905.SortArrayByParity.go
+ */
+func sortArrayByParity(A []int) []int {
+	var B []int
+	var C []int
+	for _, v := range A {
+		if v%2 == 0 {
+			B = append(B, v)
+			continue
+		}
+		C = append(C, v)
+	}
+	A = append(B, C...)
+	return A
+}
+```
+
+
 

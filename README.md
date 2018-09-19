@@ -530,6 +530,38 @@ Could you do it without using any loop / recursion?
 
 ---
 
+#### 344. Reverse String
+
+Write a function that takes a string as input and returns the string reversed.
+
+**Example 1:**
+
+```
+Input: "hello"
+Output: "olleh"
+```
+
+**Example 2:**
+
+```
+Input: "A man, a plan, a canal: Panama"
+Output: "amanaP :lanac a ,nalp a ,nam A"
+```
+
+**[Code:](344.ReverseString.go)**
+
+```go
+func reverseString(s string) string {
+	runes := []byte(s)
+	for from, to := 0, len(s)-1; from < to; from, to = from+1, to-1 {
+		runes[from], runes[to] = runes[to], runes[from]
+	}
+	return string(runes)
+}
+```
+
+---
+
 #### 347. Top K Frequent Elements
 
 Given a non-empty array of integers, return the **k** most frequent elements.

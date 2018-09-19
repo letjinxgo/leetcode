@@ -972,3 +972,50 @@ Explanation: The robot moves left twice. It ends up two "moves" to the left of t
 
 ---
 
+#### 709. To Lower Case
+
+Implement function ToLowerCase() that has a string parameter str, and returns the same string in lowercase.
+
+ 
+
+**Example 1:**
+
+```
+Input: "Hello"
+Output: "hello"
+```
+
+**Example 2:**
+
+```
+Input: "here"
+Output: "here"
+```
+
+**Example 3:**
+
+```
+Input: "LOVELY"
+Output: "lovely"
+```
+
+**[Code:](709.ToLowerCase.go)**
+
+```go
+/**
+ * 709.ToLowerCase.go
+ */
+ func toLowerCase(str string) string {
+	b := make([]byte, len(str))
+	for i := 0; i < len(str); i++ {
+		c := str[i]
+		if c >= 'A' && c <= 'Z' {
+			c += 'a' - 'A'
+		}
+		b[i] = c
+	}
+	return string(b)
+}
+```
+
+---

@@ -798,3 +798,59 @@ Because the 4th row is incomplete, we return 3.
 
 ---
 
+#### 507. Perfect Number
+
+We define the Perfect Number is a **positive** integer that is equal to the sum of all its **positive** divisors except itself.
+
+Now, given an 
+
+integer
+
+ n, write a function that returns true when it is a perfect number and false when it is not.
+
+
+
+**Example:**
+
+```
+Input: 28
+Output: True
+Explanation: 28 = 1 + 2 + 4 + 7 + 14
+```
+
+
+
+**Note:** The input number **n** will not exceed 100,000,000. (1e8)
+
+**[Code:](507.PerfectNumber.go)**
+
+```go
+/**
+ * 507.PerfectNumber.go
+ */
+ func checkPerfectNumber(num int) bool {
+	var nums []int
+	if num == 1 {
+		return false
+	}
+	nums = append(nums, 1)
+	for i := 2; i <= int(math.Sqrt(float64(num))); i++ {
+		if num%i == 0 {
+			v := num / i
+			nums = append(nums, v)
+			nums = append(nums, i)
+		}
+	}
+	sum := 0
+	for _, v := range nums {
+		sum += v
+	}
+	if sum == num {
+		return true
+	}
+	return false
+}
+```
+
+---
+

@@ -1,7 +1,7 @@
 # leetcode
 go solutions of leetcode problems
 
-
+---
 
 #### 1. Two Sum
 
@@ -36,61 +36,7 @@ return [0, 1].
 }
 ```
 
-
-
-#### 226. Invert Binary Tree
-
-Invert a binary tree.
-
-**Example:**
-
-Input:
-
-```
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-```
-
-Output:
-
-```
-     4
-   /   \
-  7     2
- / \   / \
-9   6 3   1
-```
-
-**Trivia:**
-This problem was inspired by [this original tweet](https://twitter.com/mxcl/status/608682016205344768) by [Max Howell](https://twitter.com/mxcl):
-
-> Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so f*** off.
-
-**[Code:](226.InvertBinaryTree.go)**
-
-```go
-/**
- * InvertBinaryTree.go
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-func invertTree(root *TreeNode) *TreeNode {
-	if root == nil {
-		return nil
-	}
-	root = &TreeNode{root.Val, invertTree(root.Right), invertTree(root.Left)}
-	return root
-}
-```
-
-
+-----
 
 #### 26. Remove Duplicates from Sorted Array
 
@@ -188,7 +134,214 @@ func removeDuplicates(nums []int) int {
 }
 ```
 
+----
 
+#### 118. Pascal's Triangle
+
+Given a non-negative integer *numRows*, generate the first *numRows* of Pascal's triangle.
+
+![img](PascalTriangleAnimated2.gif)
+In Pascal's triangle, each number is the sum of the two numbers directly above it.
+
+**Example:**
+
+```
+Input: 5
+Output:
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+```
+
+---
+
+**[Code:](118.Pascal'sTriangle.go)**
+
+```go
+/**
+ * 118.Pascal'sTriangle.go
+ */
+func generate(numRows int) [][]int {
+	var result [][]int
+	if numRows == 1 {
+		result = [][]int{{1}}
+	}
+	if numRows == 2 {
+		result = [][]int{{1}, {1, 1}}
+	}
+	if numRows >= 3 {
+		pre := generate(numRows - 1)
+		prelast := pre[len(pre)-1]
+		var last []int = []int{1}
+		for i, _ := range prelast {
+			if i <= len(prelast)-2 {
+				temp := prelast[i] + prelast[i+1]
+				last = append(last, temp)
+			}
+		}
+		last = append(last, 1)
+		result = append(pre, last)
+	}
+	return result
+}
+
+```
+
+---
+
+#### 226. Invert Binary Tree
+
+Invert a binary tree.
+
+**Example:**
+
+Input:
+
+```
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+```
+
+Output:
+
+```
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+```
+
+**Trivia:**
+This problem was inspired by [this original tweet](https://twitter.com/mxcl/status/608682016205344768) by [Max Howell](https://twitter.com/mxcl):
+
+> Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so f*** off.
+
+**[Code:](226.InvertBinaryTree.go)**
+
+```go
+/**
+ * InvertBinaryTree.go
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
+ */
+func invertTree(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	root = &TreeNode{root.Val, invertTree(root.Right), invertTree(root.Left)}
+	return root
+}
+```
+
+---
+
+#### 268. Missing Number
+
+Given an array containing *n* distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.
+
+**Example 1:**
+
+```
+Input: [3,0,1]
+Output: 2
+```
+
+**Example 2:**
+
+```
+Input: [9,6,4,2,3,5,7,0,1]
+Output: 8
+```
+
+**Note**:
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+
+**[Code:](./268.MissingNumber.go)**
+
+```go
+/**
+ * 268.MissingNumber.go
+ */
+func missingNumber(nums []int) int {
+	sort.Ints(nums)
+	fmt.Println(nums)
+	for i, v := range nums {
+		if i != v {
+			return i
+		}
+		if i == len(nums)-1 {
+			return i + 1
+		}
+	}
+	return 0
+}
+```
+
+---
+
+#### 347. Top K Frequent Elements
+
+Given a non-empty array of integers, return the **k** most frequent elements.
+
+**Example 1:**
+
+```
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+```
+
+**Example 2:**
+
+```
+Input: nums = [1], k = 1
+Output: [1]
+```
+
+**Note:**
+
+- You may assume *k* is always valid, 1 ≤ *k* ≤ number of unique elements.
+- Your algorithm's time complexity **must be** better than O(*n* log *n*), where *n* is the array's size.
+
+**[Code:](./347.TopKFrequentElements.go)**
+
+```go
+/**
+ * 347.TopKFrequentElements.go
+ */
+func topKFrequent(nums []int, k int) []int {
+	var numcounts = make(map[int]int)
+	var counts []int
+	var result []int
+	for _, v := range nums {
+		numcounts[v]++
+	}
+	for _, v := range numcounts {
+		counts = append(counts, v)
+	}
+	sort.Ints(counts)
+	c := counts[len(counts)-k]
+	for k, v := range numcounts {
+		if v >= c {
+			result = append(result, k)
+		}
+	}
+	return result
+}
+```
+
+---
 
 #### 397. Integer Replacement
 
@@ -257,99 +410,5 @@ func integerReplacement(n int) int {
 }
 ```
 
-
-
-#### 268. Missing Number
-
-Given an array containing *n* distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.
-
-**Example 1:**
-
-```
-Input: [3,0,1]
-Output: 2
-```
-
-**Example 2:**
-
-```
-Input: [9,6,4,2,3,5,7,0,1]
-Output: 8
-```
-
-**Note**:
-Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
-
-**[Code:](./268.MissingNumber.go)**
-
-```go
-/**
- * 268.MissingNumber.go
- */
-func missingNumber(nums []int) int {
-	sort.Ints(nums)
-	fmt.Println(nums)
-	for i, v := range nums {
-		if i != v {
-			return i
-		}
-		if i == len(nums)-1 {
-			return i + 1
-		}
-	}
-	return 0
-}
-```
-
-
-
-#### 347. Top K Frequent Elements
-
-Given a non-empty array of integers, return the **k** most frequent elements.
-
-**Example 1:**
-
-```
-Input: nums = [1,1,1,2,2,3], k = 2
-Output: [1,2]
-```
-
-**Example 2:**
-
-```
-Input: nums = [1], k = 1
-Output: [1]
-```
-
-**Note:**
-
-- You may assume *k* is always valid, 1 ≤ *k* ≤ number of unique elements.
-- Your algorithm's time complexity **must be** better than O(*n* log *n*), where *n* is the array's size.
-
-**[Code:](./347.TopKFrequentElements.go)**
-
-```go
-/**
- * 347.TopKFrequentElements.go
- */
-func topKFrequent(nums []int, k int) []int {
-	var numcounts = make(map[int]int)
-	var counts []int
-	var result []int
-	for _, v := range nums {
-		numcounts[v]++
-	}
-	for _, v := range numcounts {
-		counts = append(counts, v)
-	}
-	sort.Ints(counts)
-	c := counts[len(counts)-k]
-	for k, v := range numcounts {
-		if v >= c {
-			result = append(result, k)
-		}
-	}
-	return result
-}
-```
+---
 

@@ -390,6 +390,51 @@ func invertTree(root *TreeNode) *TreeNode {
 
 ---
 
+#### 260. Single Number III
+
+Given an array of numbers `nums`, in which exactly two elements appear only once and all the other elements appear exactly twice. Find the two elements that appear only once.
+
+**Example:**
+
+```
+Input:  [1,2,1,3,2,5]
+Output: [3,5]
+```
+
+**Note**:
+
+1. The order of the result is not important. So in the above example, `[5, 3]` is also correct.
+2. Your algorithm should run in linear runtime complexity. Could you implement it using only constant space complexity?
+
+**[Code:](260.SingleNumberIII.go)**
+
+```go
+/**
+ * 260.SingleNumberIII.go
+ */
+func singleNumber(nums []int) []int {
+	var numss []int
+	for _, v := range nums {
+		counts := 0
+		for _, m := range nums {
+			if v != m {
+				counts++
+			}
+		}
+		if counts == len(nums)-1 {
+			numss = append(numss, v)
+		}
+		if len(numss) == 2 {
+			return numss
+		}
+	}
+	return nil
+}
+
+```
+
+---
+
 #### 268. Missing Number
 
 Given an array containing *n* distinct numbers taken from `0, 1, 2, ..., n`, find the one that is missing from the array.

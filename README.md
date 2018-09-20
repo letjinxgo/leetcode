@@ -21,9 +21,6 @@ return [0, 1].
 **[Code:](1.TwoSum.go)**
 
 ```go
-/**
- * 1. TwoSum.go
- */
 func twoSum(nums []int, target int) []int {
     for i, x := range nums {
         for j, y := range nums {
@@ -86,9 +83,6 @@ for (int i = 0; i < len; i++) {
 **[Code:](26.RemoveDuplicatesfromSortedArray.go)**
 
 ```go
-/**
- * 26.RemoveDuplicatesfromSortedArray.go
- */
 func removeDuplicates(nums []int) int {
 	if len(nums) == 1 {
 		return len(nums)
@@ -110,9 +104,6 @@ func removeDuplicates(nums []int) int {
 **[Code:](26.RemoveDuplicatesfromNotSortedArray.go)**
 
 ```go
-/**
- * 26.RemoveDuplicatesfromNotSortedArray.go
- */
 func removeDuplicates(nums []int) int {
 	if len(nums) == 1 {
 		return len(nums)
@@ -163,9 +154,6 @@ Explanation: The array represents the integer 4321.
 **[Code:](66.PlusOne.go)**
 
 ```go
-/**
- * 66.PlusOne.go
- */
 func plusOne(digits []int) []int {
 	first := 0
 	for i := len(digits) - 1; i >= 0; i-- {
@@ -213,9 +201,6 @@ Output:
 **[Code:](118.Pascal'sTriangle.go)**
 
 ```go
-/**
- * 118.Pascal'sTriangle.go
- */
 func generate(numRows int) [][]int {
 	var result [][]int
 	if numRows == 1 {
@@ -269,9 +254,6 @@ Output: 4
 **[Code:](136.SingleNumber.go)**
 
 ```go
-/**
- * 136.SingleNumber.go
- */
 func singleNumber(nums []int) int {
     for _, v := range nums {
 		counts := 0
@@ -315,9 +297,6 @@ Output: 99
 **[Code:](137.SingleNumberII.go)**
 
 ```go
-/**
- * 137.SingleNumberII.go
- */
 func singleNumber(nums []int) int {
 	for _, v := range nums {
 		counts := 0
@@ -371,7 +350,6 @@ This problem was inspired by [this original tweet](https://twitter.com/mxcl/stat
 
 ```go
 /**
- * InvertBinaryTree.go
  * Definition for a binary tree node.
  * type TreeNode struct {
  *     Val int
@@ -409,9 +387,6 @@ Output: [3,5]
 **[Code:](260.SingleNumberIII.go)**
 
 ```go
-/**
- * 260.SingleNumberIII.go
- */
 func singleNumber(nums []int) []int {
 	var numss []int
 	for _, v := range nums {
@@ -459,9 +434,6 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 **[Code:](./268.MissingNumber.go)**
 
 ```go
-/**
- * 268.MissingNumber.go
- */
 func missingNumber(nums []int) int {
 	sort.Ints(nums)
 	fmt.Println(nums)
@@ -498,9 +470,6 @@ Output: [1,3,12,0,0]
 **[Code:](283.MoveZeroes.go)**
 
 ```go
-/**
- * 283.MoveZeroes.go
- */
 func moveZeroes(nums []int) []int {
 	index := 0
 	for _, v := range nums {
@@ -556,9 +525,6 @@ Could you do it without using any loop / recursion?
 **[Code:](326.PowerofThree.go)**
 
 ```go
-/**
- * 326.PowerofThree.go
- */
 func isPowerOfThree(n int) bool {
 	if n > 0 && 1162261467%n == 0 {
 		return true
@@ -590,9 +556,6 @@ Output: "amanaP :lanac a ,nalp a ,nam A"
 **[Code:](344.ReverseString.go)**
 
 ```go
-/**
- * 344.ReverseString.go
- */
 func reverseString(s string) string {
 	runes := []byte(s)
 	for from, to := 0, len(s)-1; from < to; from, to = from+1, to-1 {
@@ -630,9 +593,6 @@ Output: [1]
 **[Code:](./347.TopKFrequentElements.go)**
 
 ```go
-/**
- * 347.TopKFrequentElements.go
- */
 func topKFrequent(nums []int, k int) []int {
 	var numcounts = make(map[int]int)
 	var counts []int
@@ -681,9 +641,6 @@ Explanation:
 **[Code:](389.FindtheDifference.go)**
 
 ```go
-/**
- * 389.FindtheDifference.go
- */
 func findTheDifference(s string, t string) byte {
 	var ss = make([]byte, len(s))
 	var tt = make([]byte, len(t))
@@ -764,9 +721,6 @@ or
 **[Code:](./397.IntegerReplacement.go)**
 
 ```go
-/**
- * 397.IntegerReplacement.go
- */
 func integerReplacement(n int) int {
 	fmt.Println(n)
 	if n == 1 {
@@ -780,6 +734,43 @@ func integerReplacement(n int) int {
 		}
 		return int(math.Min(float64(integerReplacement(n-1)+1), float64(integerReplacement(n+1)+1)))
 	}
+}
+```
+
+---
+
+#### 461. Hamming Distance
+
+The [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two integers is the number of positions at which the corresponding bits are different.
+
+Given two integers `x` and `y`, calculate the Hamming distance.
+
+**Note:**
+0 ≤ `x`, `y` < 231.
+
+**Example:**
+
+```
+Input: x = 1, y = 4
+
+Output: 2
+
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+The above arrows point to positions where the corresponding bits are different.
+```
+
+**[Code:](461.HammingDistance.go)**
+
+```go
+func hammingDistance(x int, y int) int {
+	if (x ^ y) == 0 {
+		return 0
+	}
+	return (x^y)%2 + hammingDistance(x/2, y/2)
 }
 ```
 
@@ -825,9 +816,6 @@ Because the 4th row is incomplete, we return 3.
 **[Code:](441.ArrangingCoins.go)**
 
 ```go
-/**
- * 441.ArrangingCoins.go
- */
 func arrangeCoins(n int) int {
 	total := float64(n) * 2
 	num := int(math.Sqrt(total))
@@ -867,9 +855,6 @@ Explanation: 28 = 1 + 2 + 4 + 7 + 14
 **[Code:](507.PerfectNumber.go)**
 
 ```go
-/**
- * 507.PerfectNumber.go
- */
 func checkPerfectNumber(num int) bool {
     var nums []int
 	if num == 1 {
@@ -933,9 +918,6 @@ Output: False
 **[Code:](51.StudentAttendanceRecordI.go)**
 
 ```go
-/**
- * 51.StudentAttendanceRecordI.go
- */
 func checkRecord(s string) bool {
 	A := 0
 	L := 0
@@ -991,7 +973,12 @@ Merged tree:
 
 ```go 
 /**
- * 17.MergeTwoBinaryTrees.go
+ * Definition for a binary tree node.
+ * type TreeNode struct {
+ *     Val int
+ *     Left *TreeNode
+ *     Right *TreeNode
+ * }
  */
 func mergeTrees(t1 *TreeNode, t2 *TreeNode) *TreeNode {
 	if t1 == nil {
@@ -1038,9 +1025,6 @@ Explanation: The robot moves left twice. It ends up two "moves" to the left of t
 **[Code:](657.RobotReturntoOrigin.go)**
 
 ```go
-/**
- * 657.RobotReturntoOrigin.go
- */
 func judgeCircle(moves string) bool {
 	x, y := 0, 0
 	for _, m := range moves {
@@ -1093,9 +1077,6 @@ Output: "lovely"
 **[Code:](709.ToLowerCase.go)**
 
 ```go
-/**
- * 709.ToLowerCase.go
- */
 func toLowerCase(str string) string {
 	b := make([]byte, len(str))
 	for i := 0; i < len(str); i++ {
@@ -1139,9 +1120,6 @@ Output: 0
 **[Code:](771.JewelsandStones.go)**
 
 ```go
-/**
- * 771.JewelsandStones.go
- */
 func numJewelsInStones(J string, S string) int {
 	counts := 0
 	for _, j := range J {
@@ -1176,9 +1154,6 @@ The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
 **[Code:](905.SortArrayByParity.go)**
 
 ```go
-/**
- * 905.SortArrayByParity.go
- */
 func sortArrayByParity(A []int) []int {
 	var B []int
 	var C []int

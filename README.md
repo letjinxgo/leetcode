@@ -963,7 +963,7 @@ Merged tree:
 
 **[Code:](617.MergeTwoBinaryTrees.go)**
 
-```go 
+```go
 func mergeTrees(t1 *TreeNode, t2 *TreeNode) *TreeNode {
 	if t1 == nil {
 		return t2

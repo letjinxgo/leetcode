@@ -731,43 +731,6 @@ func integerReplacement(n int) int {
 
 ---
 
-#### 461. Hamming Distance
-
-The [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two integers is the number of positions at which the corresponding bits are different.
-
-Given two integers `x` and `y`, calculate the Hamming distance.
-
-**Note:**
-0 ≤ `x`, `y` < 231.
-
-**Example:**
-
-```
-Input: x = 1, y = 4
-
-Output: 2
-
-Explanation:
-1   (0 0 0 1)
-4   (0 1 0 0)
-       ↑   ↑
-
-The above arrows point to positions where the corresponding bits are different.
-```
-
-**[Code:](461.HammingDistance.go)**
-
-```go
-func hammingDistance(x int, y int) int {
-	if (x ^ y) == 0 {
-		return 0
-	}
-	return (x^y)%2 + hammingDistance(x/2, y/2)
-}
-```
-
----
-
 #### 441. Arranging Coins
 
 You have a total of *n* coins that you want to form in a staircase shape, where every *k*-th row must have exactly *k* coins.
@@ -819,6 +782,43 @@ func arrangeCoins(n int) int {
 ```
 
 ---
+
+#### 461. Hamming Distance
+
+The [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between two integers is the number of positions at which the corresponding bits are different.
+
+Given two integers `x` and `y`, calculate the Hamming distance.
+
+**Note:**
+0 ≤ `x`, `y` < 231.
+
+**Example:**
+
+```
+Input: x = 1, y = 4
+
+Output: 2
+
+Explanation:
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+The above arrows point to positions where the corresponding bits are different.
+```
+
+**[Code:](461.HammingDistance.go)**
+
+```go
+func hammingDistance(x int, y int) int {
+	if (x ^ y) == 0 {
+		return 0
+	}
+	return (x^y)%2 + hammingDistance(x/2, y/2)
+}
+```
+
+------
 
 #### 507. Perfect Number
 

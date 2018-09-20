@@ -349,14 +349,6 @@ This problem was inspired by [this original tweet](https://twitter.com/mxcl/stat
 **[Code:](226.InvertBinaryTree.go)**
 
 ```go
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
@@ -972,14 +964,6 @@ Merged tree:
 **[Code:](617.MergeTwoBinaryTrees.go)**
 
 ```go 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 func mergeTrees(t1 *TreeNode, t2 *TreeNode) *TreeNode {
 	if t1 == nil {
 		return t2

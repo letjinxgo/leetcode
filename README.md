@@ -774,6 +774,60 @@ func integerReplacement(n int) int {
 
 ---
 
+#### 412. Fizz Buzz
+
+Write a program that outputs the string representation of numbers from 1 to *n*.
+
+But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.
+
+**Example:**
+
+```
+n = 15,
+
+Return:
+[
+    "1",
+    "2",
+    "Fizz",
+    "4",
+    "Buzz",
+    "Fizz",
+    "7",
+    "8",
+    "Fizz",
+    "Buzz",
+    "11",
+    "Fizz",
+    "13",
+    "14",
+    "FizzBuzz"
+]
+```
+
+**[Code:](412.FizzBuzz.go)**
+
+```go
+func fizzBuzz(n int) []string {
+	var result []string
+	if n == 1 {
+		return []string{strconv.Itoa(n)}
+	}
+	if n%3 == 0 && n%5 == 0 {
+		result = append(fizzBuzz(n-1), "FizzBuzz")
+	} else if n%3 == 0 {
+		result = append(fizzBuzz(n-1), "Fizz")
+	} else if n%5 == 0 {
+		result = append(fizzBuzz(n-1), "Buzz")
+	} else {
+		result = append(fizzBuzz(n-1), strconv.Itoa(n))
+	}
+	return result
+}
+```
+
+---
+
 #### 441. Arranging Coins
 
 You have a total of *n* coins that you want to form in a staircase shape, where every *k*-th row must have exactly *k* coins.

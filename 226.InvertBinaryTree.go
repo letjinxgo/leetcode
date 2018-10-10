@@ -24,14 +24,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
 func invertTree(root *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
@@ -40,16 +32,6 @@ func invertTree(root *TreeNode) *TreeNode {
 	return root
 }
 
-/* func preOrderRecursive(root *TreeNode) []int {
-	if root == nil {
-		return []int{}
-	}
-	var nums []int
-	nums = append(nums, preOrderRecursive(root.Left)...)
-	nums = append(nums, root.Val)
-	nums = append(nums, preOrderRecursive(root.Right)...)
-	return nums
-} */
 func breadthFirstSearch(node *TreeNode) []int {
 	var result []int
 	var nodes []*TreeNode = []*TreeNode{node}
